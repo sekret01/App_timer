@@ -1,34 +1,12 @@
 from .apps_time import AppTime
+from .process_setting import ProcessSetting
 import subprocess
 import logging
 import json
 import threading
 
 
-class ProcessSetting:
-    def __init__(self):
-        self.config_path: str = "app_timer/configs/config.ini"
-        self.ignore_process_path: str = "app_timer/data/ignore_process.json"
-        self.tracked_process_path: str = "app_timer/data/tracked_process.json"
-        self.logs_path: str = "app_timer/logs/logs.log"
-        self.save_file_path: str = "save_times/"
 
-    def set_ignores_path(self, path):
-        self.ignore_process_path = path
-
-    def set_tracked_path(self, path):
-        self.tracked_process_path = path
-
-    def set_save_file_path(self, path):
-        self.save_file_path = path
-
-    def set_default(self):
-        """Set default paths"""
-        self.config_path: str = "app_timer/configs/config.ini"
-        self.ignore_process_path: str = "app_timer/data/ignore_process.json"
-        self.tracked_process_path: str = "app_timer/data/tracked_process.json"
-        self.logs_path: str = "app_timer/logs/logs.log"
-        self.save_file_path: str = "save_times/"
 
 
 class ProcessList:
@@ -82,6 +60,7 @@ class ProcessList:
         self.update_process_time(processes)
 
     def update_process_time(self, active_processes: list[str]):
+        """Update time all processes, adding 1 second"""
         for proc, proc_time in self.processes.items():
             if proc in active_processes:
                 self.processes[proc] += 1
@@ -98,7 +77,10 @@ class ProcessList:
         return text
 
     def print_process_info(self) -> None:
-        """Create formatted text with information about processes"""
+        """
+        Create formatted text with information about processes
+        ONLY FOR TESTS
+        """
         text = ""
         for proc, time in self.processes.items():
             text += f"{proc:<30} {time}\n"

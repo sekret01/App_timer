@@ -23,10 +23,9 @@ def main():
     while True:
 
         time.sleep(pause)
-        os.system('cls')
-
         p.update_process_list()
-        p.print_process_info()
+        # os.system('cls')
+        # p.print_process_info()
 
         if not thr.is_alive():
             thr = threading.Thread(target=writer,
@@ -36,7 +35,7 @@ def main():
             thr.start()
 
         end = time.time()
-        print(f"\n\ntime: {round(end - start, 3)}")
+        # print(f"\n\ntime: {round(end - start, 3)}")
         pause = round(1 / (end - start), 3)
         start = end
 
