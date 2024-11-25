@@ -2,4 +2,4 @@
 .idea
 logs/*
 app_timer/__pycache__/
-save_times/*
+save_times

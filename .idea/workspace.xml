@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa8120d8-9fa3-4ed7-b978-cb9f49b1effc" name="Changes" comment="Небольшие изменения класса AppTime&#10;Создание класса ProcessList:&#10; - обновление процессов&#10; - обновление времени процессов&#10; - основа вывода информации о процессах&#10; - основа автокалибровки">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="fa8120d8-9fa3-4ed7-b978-cb9f49b1effc" name="Changes" comment="Небольшие изменения класса AppTime&#10;Создание класса ProcessList:&#10; - обновление процессов&#10; - обновление времени процессов&#10; - основа вывода информации о процессах&#10; - основа автокалибровки" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
