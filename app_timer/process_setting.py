@@ -6,7 +6,7 @@ class ProcessSetting:
         self.ignore_process_path: str = "app_timer/data/ignore_process.json"
         self.tracked_process_path: str = "app_timer/data/tracked_process.json"
         self.logs_path: str = "app_timer/logs/logs.log"
-        self.save_file_path: str = "save_times/"
+        self.save_file_path: str = "save_time/"
 
     def set_ignores_path(self, path):
         self.ignore_process_path = path
@@ -23,4 +23,4 @@ class ProcessSetting:
         self.ignore_process_path: str = "app_timer/data/ignore_process.json"
         self.tracked_process_path: str = "app_timer/data/tracked_process.json"
         self.logs_path: str = "app_timer/logs/logs.log"
-        self.save_file_path: str = "save_times/"
+        self.save_file_path: str = "save_time/"
