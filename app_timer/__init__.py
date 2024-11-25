@@ -1,1 +1,1 @@
-from .process_list import ProcessList
+from .process_info_dict import ProcessInfoDict

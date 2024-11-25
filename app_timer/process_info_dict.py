@@ -1,5 +1,6 @@
 from .apps_time import AppTime
 from .process_setting import ProcessSetting
+from .processes_list import ProcessListCreator
 import subprocess
 import logging
 import json
@@ -9,13 +10,14 @@ import threading
 
 
 
-class ProcessList:
+class ProcessInfoDict:
     """
     ...
     """
     def __init__(self):
         self.processes: dict[str:AppTime] = dict()
         self.settings: ProcessSetting = ProcessSetting()
+        self.processes_list_creator = ProcessListCreator()
 
     # create process name list
 
