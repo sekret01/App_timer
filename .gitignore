@@ -3,4 +3,3 @@
 logs/*
 app_timer/__pycache__/
 save_time/*
-test.py

@@ -1,11 +1,11 @@
-from app_timer import ProcessList
+from app_timer import ProcessInfoDict
 
 import threading
 import time
 import os
 
 
-def writer(path: str, proc: ProcessList, pause = 10):
+def writer(path: str, proc: ProcessInfoDict, pause = 10):
     data = proc.get_process_info()
     with open(path, 'w', encoding='utf-8') as f:
         f.write(data)
@@ -15,7 +15,7 @@ def writer(path: str, proc: ProcessList, pause = 10):
 def main():
     pause = 1
 
-    p = ProcessList()
+    p = ProcessInfoDict()
     thr = threading.Thread()
 
     start = time.time()
