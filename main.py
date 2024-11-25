@@ -24,18 +24,18 @@ def main():
 
         time.sleep(pause)
         p.update_process_list()
-        # os.system('cls')
-        # p.print_process_info()
+        os.system('cls')
+        p.print_process_info()
 
         if not thr.is_alive():
             thr = threading.Thread(target=writer,
-                                   args=[p.settings.save_file_path + "f.txt", p],
+                                   args=[p.settings.save_file_path + "test_file.txt", p],
                                    name="Writer",
                                    daemon=True)
             thr.start()
 
         end = time.time()
-        # print(f"\n\ntime: {round(end - start, 3)}")
+        print(f"\n\ntime: {round(end - start, 3)}")
         pause = round(1 / (end - start), 3)
         start = end
 
