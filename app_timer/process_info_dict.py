@@ -9,7 +9,7 @@ class ProcessInfoDict:
         {<process_name>: {"time": <AppTimer>, "run" <bool>}}
     """
     def __init__(self):
-        self.processes: dict[str: dict[str: AppTime, str: bool]] = dict()
+        self.processes: dict[str: dict[str: AppTime, str: bool, str: str]] = dict()
         self.settings: ProcessSetting = ProcessSetting()
         self.processes_list_creator = ProcessListCreator()
 
@@ -28,8 +28,12 @@ class ProcessInfoDict:
             if proc in active_processes:
                 self.processes[proc]["time"] += 1
                 self.processes[proc]["run"] = True
+                self.processes[proc]["str_time"] = str(self.processes[proc]["time"])
             else:
                 self.processes[proc]["run"] = False
+
+    def get_processes(self):
+        return self.processes
 
     # output
 
@@ -37,7 +41,7 @@ class ProcessInfoDict:
         """Create formatted text with information about processes"""
         text = ""
         for proc, info in self.processes.items():
-            text += f"{proc:<30} {str(info["time"]):<10} {info["run"]}\n"
+            text += f"{proc:<30} {info["str_time"]:<10} {info["run"]}\n"
 
         return text
 
@@ -51,6 +55,5 @@ class ProcessInfoDict:
             text += f"{proc:<30} {str(info["time"]):<10s} {info["run"]}\n"
 
         print(text)
-
 
 

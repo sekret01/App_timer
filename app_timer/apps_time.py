@@ -31,7 +31,7 @@ class AppTime:
 
     def __str__(self):
         """Create formatted string of time"""
-        return f"{self.hours:0>2}:{self.minutes:0>2}:{self.seconds:0>2}"
+        return f"{self.hours:0>2d}:{self.minutes:0>2d}:{self.seconds:0>2d}"
 
     def __repr__(self):
         """Create formatted string of time"""
