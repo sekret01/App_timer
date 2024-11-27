@@ -1,7 +1,5 @@
 from app_timer import ProcessInfoDict
 from app_timer import WriterProcessInfo
-
-import threading
 import time
 import os
 
@@ -24,15 +22,21 @@ def main():
 
     while True:
 
-        time.sleep(pause)
-        p.update_process_list()
-        # os.system('cls')
-        # p.print_process_info()
+        try:
 
-        end = time.time()
-        # print(f"\n\ntime: {round(end - start, 3)}")
-        # pause = round(1 / (end - start), 3)
-        start = end
+            time.sleep(pause)
+            p.update_process_list()
+            os.system('cls')
+            p.print_process_info()
+
+            end = time.time()
+            print(f"\n\ntime: {round(end - start, 3)}")
+            pause = round(1 / (end - start), 3)
+            start = end
+
+        except KeyboardInterrupt:
+            process_writer.stop_write()
+            break
 
 
 
