@@ -4,13 +4,6 @@ import time
 import os
 
 
-def writer(path: str, proc: ProcessInfoDict, pause = 10):
-    data = proc.get_process_info()
-    with open(path, 'w', encoding='utf-8') as f:
-        f.write(data)
-    time.sleep(pause)
-
-
 def main():
     pause = 1
 
@@ -37,11 +30,6 @@ def main():
         except KeyboardInterrupt:
             process_writer.stop_write()
             break
-
-
-
-
-
 
 
 if __name__ == "__main__":
