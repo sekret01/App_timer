@@ -56,4 +56,15 @@ class ProcessInfoDict:
 
         print(text)
 
+    def print_only_names_processes(self):
+        """
+        Create formatted text with names processes
+        ONLY FOR TESTS
+        """
+        text = ""
+        for proc, info in self.processes.items():
+            text += f"{proc}\n"
+
+        print(text)
+
 
