@@ -1,5 +1,6 @@
 from .process_info_dict import ProcessInfoDict
 from .formatter import JsonFormatter
+from .logger import Logger
 import json
 import threading
 import time
@@ -15,13 +16,19 @@ class WriterProcessInfo:
         self.formatter = JsonFormatter()
         self.writer_thr: threading.Thread = threading.Thread()
         self.work = True
+        self.logger = Logger()
 
     def run(self):
         self.writer_thr = threading.Thread(name="writer process info thread",
                                            target=self.start_write,
                                            daemon=True)
         self.work = True
-        self.writer_thr.start()
+        try:
+            self.writer_thr.start()
+            self.logger.log_info(f"{__name__} run")
+        except Exception as ex:
+            self.logger.log_error(f"{__name__} :> {str(ex)}")
+            self.work = False
 
     def save_process_information(self):
         processes = self.process_dict.get_processes()
@@ -35,13 +42,17 @@ class WriterProcessInfo:
         return
 
     def write_info(self, processes: dict[str: dict[str: str, str: bool]]) -> None:
-        with open(self.process_dict.settings.save_file_path + 'test_data.json', 'w', encoding='utf-8') as file:
-            json.dump(processes, file)
+        try:
+            with open(self.process_dict.settings.save_file_path + 'test_data.json', 'w', encoding='utf-8') as file:
+                json.dump(processes, file)
+        except Exception as ex:
+            self.logger.log_error(f"{__name__} :> {str(ex)}")
 
 
     def stop_write(self):
         self.work = False
         self.save_process_information()
+        self.logger.log_info(f"{__name__} stop")
 
 
 

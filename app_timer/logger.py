@@ -1,8 +1,9 @@
 import logging
 import logging.config
+from .process_setting import ProcessSetting
 
-
-logging.config.fileConfig("logger/logging.conf")
+path_setting = ProcessSetting()
+logging.config.fileConfig(path_setting.logger_config)
 
 
 class Logger:
@@ -14,12 +15,9 @@ class Logger:
     def log_info(self, msg: str):
         self.main_logger.info(msg=msg)
 
+    def log_warning(self, msg: str):
+        self.main_logger.warning(msg=msg)
+
     def log_error(self, msg: str):
         self.error_logger.error(msg=msg)
 
-l = Logger()
-for i in range(-50, 50, 1):
-    if i%2:
-        l.log_info("all ok")
-    else:
-        l.log_error(f"{i} is not work")
