@@ -12,7 +12,7 @@ class WriterProcessInfo:
     """
     def __init__(self, process_dict: ProcessInfoDict):
         self.process_dict = process_dict
-        self.pause = 5
+        self.pause = 10
         self.formatter = JsonFormatter()
         self.writer_thr: threading.Thread = threading.Thread()
         self.work = True
