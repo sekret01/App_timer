@@ -21,6 +21,7 @@ class AppTime:
             minutes += 1
             if minutes >= 60:
                 hours += 1
+                minutes = 0
 
         self.hours = hours
         self.minutes = minutes

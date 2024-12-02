@@ -1,5 +1,6 @@
 from app_timer.processes_list import ProcessListCreator
 from app_timer.process_info_dict import ProcessInfoDict
+from app_timer.apps_time import AppTime
 from time import time, sleep
 import os
 
@@ -72,9 +73,17 @@ class TestProcessInfoDict:
         except KeyboardInterrupt:
             return
 
+def test_timer():
+    timer = AppTime()
+
+    for i in range(10000):
+        timer += 1
+        print(f"\r{timer}", end='')
+        sleep(0.01)
+
 
 def main():
-    TestProcessInfoDict().test_view()
+    test_timer()
 
 
 if __name__ == "__main__":

@@ -20,7 +20,7 @@ class WriterProcessInfo:
 
         self.process_dict = process_dict
         self.work = True
-        self.pause = self.setting.write_pause
+        self.pause = int(self.setting.write_pause)
         self.last_day = self.setting.last_day
 
     def run(self):
