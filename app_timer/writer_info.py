@@ -53,7 +53,7 @@ class WriterProcessInfo:
 
     def write_info(self, processes: dict[str: dict[str: str, str: bool]]) -> None:
             try:
-                with open(self.process_dict.settings.save_file_path + 'test_data.json', 'r', encoding='utf-8') as file:
+                with open(self.process_dict.settings.save_file_path, 'r', encoding='utf-8') as file:
                     old_data = json.load(file)
                     old_data[self.last_day] = processes
 
@@ -65,7 +65,7 @@ class WriterProcessInfo:
                 self.logger.log_error(f"{__name__} :> {str(ex)}")
                 return
 
-            with open(self.process_dict.settings.save_file_path + 'test_data.json', 'w', encoding='utf-8') as file:
+            with open(self.process_dict.settings.save_file_path, 'w', encoding='utf-8') as file:
                 json.dump(old_data, file)
 
 
