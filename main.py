@@ -31,7 +31,7 @@ def main():
             time.sleep(pause)
             process_dict.update_process_list()
             os.system('cls')
-            process_dict.print_process_info()
+            # process_dict.print_process_info()
 
             end = time.time()
             cycle_time = round(end - start, 3)
