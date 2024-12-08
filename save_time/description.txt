@@ -1,3 +1,0 @@
-# There default path to write files
-# with time of processes work.
-# In future it could be edite.

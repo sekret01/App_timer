@@ -20,6 +20,12 @@ class ControlApp:
         if stop_command: return True
         return False
 
+    def is_work(self) -> bool:
+        self._read_config()
+        work = int(self.config["WORK_STATUS"]["working"])
+        if work: return True
+        return False
+
     def set_error_status(self, er_status: int = 0):
         self._read_config()
         self.config["WORK_STATUS"]["error"] = str(er_status)
