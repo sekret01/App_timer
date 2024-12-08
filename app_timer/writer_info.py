@@ -57,6 +57,11 @@ class WriterProcessInfo:
                     old_data = json.load(file)
                     old_data[self.last_day] = processes
 
+            except FileNotFoundError:
+                with open(self.process_dict.settings.save_file_path, 'w', encoding='utf-8'):
+                    old_data = {self.last_day: processes}
+                    pass
+
             except json.JSONDecodeError:
                     old_data = {self.last_day: processes}
                     self.logger.log_info(f"{__name__} json time-data was empty")

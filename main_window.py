@@ -1,8 +1,8 @@
-import json
-import pathlib
 from tkinter import *
 from tkinter import ttk
+
 from data_getter import get_today_data, get_name_of_process
+
 
 class Window(Tk):
     def __init__(self):
@@ -43,8 +43,8 @@ class Window(Tk):
         self.scrollbar_table = ttk.Scrollbar(self.table_frame, orient=VERTICAL, command=self.time_table.yview)
 
 
-        # update
-        self.update_button = ttk.Button(self.table_frame, text="Обновить", command=self.update_table)
+        # update button
+        self.update_button = ttk.Button(self.table_frame, text="Обновить", command=self.update)
 
         # ----------------------------------------------------------------
 
@@ -66,6 +66,11 @@ class Window(Tk):
         """On or Off app"""
         ...
 
+    def update(self):
+        """window update"""
+        self.update_table()
+
+    # updates
     def update_table(self):
         """Update values in table"""
         self.time_table.delete(*self.time_table.get_children())
@@ -76,7 +81,7 @@ class Window(Tk):
             status = "ON" if info["run"] else "OFF"
             self.time_table.insert("", i, values=(process_name, time, status))
 
+    def update_status(self):
+        ...
 
-w = Window()
-w.mainloop()
 
