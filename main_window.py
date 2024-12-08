@@ -1,11 +1,13 @@
 from tkinter import *
 from tkinter import ttk
-
+from control_app import ControlApp
 from data_getter import get_today_data, get_name_of_process
 
 
 class Window(Tk):
     def __init__(self):
+        self.control = ControlApp()
+
         super().__init__()
         self.geometry("600x450")
         self.title("App timer")
