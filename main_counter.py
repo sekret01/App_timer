@@ -5,7 +5,6 @@ from app_timer import ObserverOfDays
 from app_timer import update_day
 from control_app import ControlApp
 import time
-import os
 
 
 def main_counter_function():
@@ -39,7 +38,6 @@ def main_counter_function():
                 controller.set_work_status()
                 controller.set_command_stop()
                 break
-            process_dict.print_process_info()
 
             time.sleep(pause)
             process_dict.update_process_list()

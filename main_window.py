@@ -1,7 +1,11 @@
+import time
 from tkinter import *
 from tkinter import ttk
+from main_counter import main_counter_function
 from control_app import ControlApp
 from data_getter import get_today_data, get_name_of_process
+import multiprocessing
+import threading
 
 
 class Window(Tk):
@@ -19,11 +23,11 @@ class Window(Tk):
 
         # status info
         self.status_info_frame = ttk.Frame(self.frame_top_line, borderwidth=1, relief=SOLID, padding=[0, 0])
-        self.status_info = ttk.Label(self.status_info_frame, text = "Work..", borderwidth=1, relief=SOLID, font=("Times New Roman", 14))
+        self.status_info = ttk.Label(self.status_info_frame, text = "проверка статуса...", borderwidth=1, relief=SOLID, font=("Times New Roman", 14))
 
         # switch
         self.switch_frame = ttk.Frame(self.frame_top_line, borderwidth=1, relief=SOLID, padding=[5, 5])
-        self.switch_button = ttk.Button(self.switch_frame, text="OFF", command=self.switch)
+        self.switch_button = ttk.Button(self.switch_frame, text="...", command=self.switch)
 
         # table
         self.table_frame = ttk.Frame(borderwidth=1, relief=SOLID, padding=[25, 25, 25, 0])
@@ -46,7 +50,7 @@ class Window(Tk):
 
 
         # update button
-        self.update_button = ttk.Button(self.table_frame, text="Обновить", command=self.update)
+        self.update_button = ttk.Button(self.table_frame, text="Обновить", command=self.update_thread)
 
         # ----------------------------------------------------------------
 
@@ -64,13 +68,34 @@ class Window(Tk):
 
         self.table_frame.pack(expand=True, padx=5, pady=5)
 
+
+        self.update_thread()
+
+    def edit_button_color(self, color):
+        ...
+
     def switch(self):
         """On or Off app"""
-        ...
+        if self.control.is_work():
+            self.control.set_command_stop(1)
+        else:
+            self.control.set_work_status(1)
+            counter = multiprocessing.Process(target=main_counter_function,
+                                              name='time_counter',
+                                              daemon=False)
+            counter.start()
+        self.update_thread()
+
+    def update_thread(self):
+        thread = threading.Thread(target=self.update, name="update", daemon=True)
+        thread.start()
+
 
     def update(self):
         """window update"""
+        time.sleep(1)
         self.update_table()
+        self.update_status()
 
     # updates
     def update_table(self):
@@ -83,7 +108,14 @@ class Window(Tk):
             status = "ON" if info["run"] else "OFF"
             self.time_table.insert("", i, values=(process_name, time, status))
 
+
     def update_status(self):
-        ...
+        work_status = int(self.control.is_work())
+        if work_status:
+            self.status_info.configure(text="В работе")
+            self.switch_button.configure(text="ON")
+        else:
+            self.status_info.configure(text="Работа завершена")
+            self.switch_button.configure(text="OFF")
 
 

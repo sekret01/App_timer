@@ -12,7 +12,7 @@ def main():
     if not controller.is_work():
         counter = multiprocessing.Process(target=main_counter_function,
                                           name='time_counter',
-                                          daemon=True)
+                                          daemon=False)
         counter.start()
 
     window.mainloop()

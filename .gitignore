@@ -5,4 +5,4 @@ app_timer/__pycache__/
 app_timer/logs/errors_logs.log
 app_timer/logs/logs.log
 app_timer/data/day_info.pickle
-# *__pycache__
+*__pycache__

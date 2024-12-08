@@ -12,8 +12,10 @@ class ProcessListCreator:
     def _get_all_processes(self) -> str:
         """Get all information running processes (use cmd)"""
         processes = subprocess.run(["tasklist", "/FO", "CSV", "/FI", "STATUS eq RUNNING", "/NH"],
-                                   capture_output=True)
+                                   # capture_output=True,
+                                   stdout=subprocess.PIPE)
         return processes.stdout.decode('utf-8', errors='ignore')
+
 
     def _get_all_names_processes(self, processes: str) -> list[str]:
         """Take only names of processes"""
