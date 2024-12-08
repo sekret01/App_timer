@@ -13,7 +13,8 @@ class ProcessListCreator:
         """Get all information running processes (use cmd)"""
         processes = subprocess.run(["tasklist", "/FO", "CSV", "/FI", "STATUS eq RUNNING", "/NH"],
                                    # capture_output=True,
-                                   stdout=subprocess.PIPE)
+                                   stdout=subprocess.PIPE,
+                                   shell=True)
         return processes.stdout.decode('utf-8', errors='ignore')
 
 
