@@ -46,9 +46,10 @@ class WriterProcessInfo:
 
     def start_write(self):
         while self.work:
-            time.sleep(self.pause)
+
             self.check_new_day()
             self.save_process_information()
+            time.sleep(self.pause)
         return
 
     def write_info(self, processes: dict[str: dict[str: str, str: bool]]) -> None:

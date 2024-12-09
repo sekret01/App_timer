@@ -3,18 +3,44 @@ from app_timer import WriterProcessInfo
 from app_timer import Logger
 from app_timer import ObserverOfDays
 from app_timer import update_day
+from app_timer import ProcessSetting
 from control_app import ControlApp
 import time
+import json
+
+
+def set_quantity_days(quantity, logger):
+    path = ProcessSetting().save_file_path
+
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            data: dict = json.load(f)
+    except json.decoder.JSONDecodeError:
+        logger.log_info(f"{__name__} json-file no data")
+        data = dict()
+
+    if len(data) <= quantity: return
+
+    while len(data) > quantity:
+        keys = list(data.keys())
+        data.pop(keys[0])
+    with open(path, 'w', encoding='utf-8') as f:
+        json.dump(data, f)
+
 
 
 def main_counter_function():
     controller = ControlApp()
     controller.set_work_status(1)
 
+    observer = ObserverOfDays()
+
     logger = Logger()
     logger.log_info(f"Start program")
+
     pause = 1
-    observer = ObserverOfDays()
+
+    set_quantity_days(controller.get_day_quantity(), logger)
 
     if observer.is_new_day():
         process_dict = ProcessInfoDict()

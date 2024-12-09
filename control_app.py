@@ -26,6 +26,10 @@ class ControlApp:
         if work: return True
         return False
 
+    def get_day_quantity(self):
+        self._read_config()
+        return int(self.config["CONST"]["quantity_days"])
+
     def set_error_status(self, er_status: int = 0):
         self._read_config()
         self.config["WORK_STATUS"]["error"] = str(er_status)
@@ -39,6 +43,11 @@ class ControlApp:
     def set_work_status(self, work_status: int = 0):
         self._read_config()
         self.config["WORK_STATUS"]["working"] = str(work_status)
+        self._save_config()
+
+    def set_day_quantity(self, quantity: int):
+        self._read_config()
+        self.config["CONST"]["quantity_days"] = str(quantity)
         self._save_config()
 
     def set_command_stop(self, stop: int = 0):
